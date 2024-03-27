@@ -88,6 +88,30 @@ void display() {
     }  
     printf("\n");  
 }  
+
+//sortList() will sort the given list in ascending order  
+void sortList() {  
+    struct list *current = NULL, *index = NULL;  
+    int temp;  
+    //Check whether list is empty  
+    if(head == NULL) {  
+        return;  
+    }  
+    else {  
+        //Current will point to head  
+        for(current = head; current->next != NULL; current = current->next) {  
+            //Index will point to node next to current  
+            for(index = current->next; index != NULL; index = index->next) {  
+                //If current's data is greater than index's data, swap the data of current and index  
+                if(current->data > index->data) {  
+                    temp = current->data;  
+                    current->data = index->data;  
+                    index->data = temp;  
+                }  
+            }  
+        }  
+    }  
+}   
    
 int main()  
 {   struct list head;
@@ -102,7 +126,10 @@ int main()
 
       
     printf("Originals list: \n");  
-    display(head);  
+    display(head);
+    sortList();
+    printf("Sorted list: \n");  
+    display(head);
       
     //Removes duplicate nodes  
     removeDuplicatelist(head);  
